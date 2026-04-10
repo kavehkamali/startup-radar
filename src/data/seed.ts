@@ -1,0 +1,86 @@
+import type { Startup } from '../types'
+
+const iso = (d: string) => new Date(d).toISOString()
+
+export const SEED_STARTUPS: Startup[] = [
+  {
+    id: 'seed-lumen',
+    name: 'LumenStack',
+    category: 'tech',
+    tagline: 'Composable data plane for AI-native apps',
+    fundRaisedUsd: 42_000_000,
+    foundedDate: '2019-03-12',
+    hq: 'San Francisco, CA',
+    stage: 'Series B',
+    employees: 128,
+    lastUpdated: iso('2026-04-08T14:20:00Z'),
+    description:
+      'LumenStack provides a managed lakehouse with fine-grained policy, embeddings indexing, and low-latency feature serving. Teams adopt it to unify batch and online ML without bespoke glue code.',
+    investors: ['Index', 'Accel', 'GV'],
+    website: 'https://lumenstack.example',
+  },
+  {
+    id: 'seed-orbit',
+    name: 'OrbitPay',
+    category: 'tech',
+    tagline: 'Global payouts with programmable compliance',
+    fundRaisedUsd: 18_500_000,
+    foundedDate: '2021-07-01',
+    hq: 'New York, NY',
+    stage: 'Series A',
+    employees: 64,
+    lastUpdated: iso('2026-04-07T09:05:00Z'),
+    description:
+      'OrbitPay abstracts cross-border rails behind a single API, with rules for KYC tiers, sanctions screening, and instant reconciliation for marketplaces.',
+    investors: ['a16z', 'Lightspeed'],
+    website: 'https://orbitpay.example',
+  },
+  {
+    id: 'seed-pulse',
+    name: 'PulseTrend',
+    category: 'trends',
+    tagline: 'Narrative velocity across public and private markets',
+    fundRaisedUsd: null,
+    foundedDate: '2024-01-15',
+    hq: 'London, UK',
+    stage: 'Seed',
+    employees: 14,
+    lastUpdated: iso('2026-04-09T11:40:00Z'),
+    description:
+      'PulseTrend tracks emergent themes—agentic workflows, climate hardware, defense tech—and scores momentum from filings, hiring, and research citations.',
+    investors: ['Sequoia'],
+    website: null,
+  },
+  {
+    id: 'seed-apex',
+    name: 'Apex Grove',
+    category: 'funds',
+    tagline: 'Sector-focused growth fund for infrastructure software',
+    fundRaisedUsd: 750_000_000,
+    foundedDate: '2016-05-20',
+    hq: 'Menlo Park, CA',
+    stage: 'Growth',
+    employees: 48,
+    lastUpdated: iso('2026-04-06T16:00:00Z'),
+    description:
+      'Apex Grove backs category leaders modernizing compute, networking, and security. Recent emphasis on AI ops, edge platforms, and regulated data stacks.',
+    investors: [],
+    website: 'https://apexgrove.example',
+  },
+  {
+    id: 'seed-harbor',
+    name: 'Harbor Notes',
+    category: 'other',
+    tagline: 'Briefings for operators on policy and procurement',
+    fundRaisedUsd: 3_200_000,
+    foundedDate: '2023-09-01',
+    hq: 'Washington, DC',
+    stage: 'Seed',
+    employees: 22,
+    lastUpdated: iso('2026-04-05T08:30:00Z'),
+    description:
+      'Harbor Notes synthesizes regulatory drafts, agency RFPs, and vendor landscapes into weekly digests for COOs and heads of strategy.',
+    investors: ['NEA', 'Benchmark'],
+    website: 'https://harbornotes.example',
+  },
+]
