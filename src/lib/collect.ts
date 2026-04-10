@@ -38,30 +38,36 @@ function randomId() {
   return `st-${crypto.randomUUID().slice(0, 8)}`
 }
 
+function uniqueDisplayName(): string {
+  const base = pick(NAMES)
+  const suffix = Math.random().toString(36).slice(2, 5)
+  return `${base} ${suffix}`
+}
+
 function fundForCategory(cat: CategoryId): number | null {
   if (cat === 'trends') return null
   if (cat === 'other') return Math.random() > 0.4 ? Math.round(2 + Math.random() * 80) * 1_000_000 : null
   return Math.round(3 + Math.random() * 120) * 1_000_000
 }
 
-export function generateBatch(count: number, categoryBias?: CategoryId): Startup[] {
-  const cats: CategoryId[] = categoryBias
-    ? [categoryBias, categoryBias, categoryBias, 'tech', 'trends', 'funds', 'other']
-    : ['tech', 'trends', 'funds', 'other']
+/** Even spread across all category tabs (no current-tab bias). */
+const ALL_CATEGORIES: CategoryId[] = ['tech', 'trends', 'funds', 'other']
 
+export function generateBatch(count: number): Startup[] {
   const now = new Date()
   const batch: Startup[] = []
 
   for (let i = 0; i < count; i++) {
-    const category = pick(cats)
+    const category = ALL_CATEGORIES[i % ALL_CATEGORIES.length]!
     const founded = new Date(now)
     founded.setFullYear(now.getFullYear() - Math.floor(Math.random() * 8) - 1)
     const lastUpdated = new Date(now.getTime() - Math.floor(Math.random() * 36) * 60_000 * 60)
 
     const fund = fundForCategory(category)
+    const displayName = uniqueDisplayName()
     batch.push({
       id: randomId(),
-      name: pick(NAMES),
+      name: displayName,
       category,
       tagline: pick(TAGS),
       fundRaisedUsd: fund,
@@ -76,7 +82,10 @@ export function generateBatch(count: number, categoryBias?: CategoryId): Startup
           Array.from({ length: 2 + Math.floor(Math.random() * 3) }, () => pick(INVESTORS)),
         ),
       ),
-      website: Math.random() > 0.15 ? `https://${pick(NAMES).toLowerCase().replace(/\s+/g, '')}.example` : null,
+      website:
+        Math.random() > 0.15
+          ? `https://${displayName.toLowerCase().replace(/[^a-z0-9]+/g, '')}.example`
+          : null,
     })
   }
 
